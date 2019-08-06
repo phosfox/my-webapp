@@ -1,0 +1,4 @@
+2019-08-05 18:57:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Datenumwandlungsfehler beim Umwandeln von "'a' (LOCATIONS: X INTEGER)"
+Data conversion error converting "'a' (LOCATIONS: X INTEGER)"; SQL statement:
+INSERT INTO locations ( x, y ) VALUES ( ?, ? ) -- (?1, ?2) [22018-193]
