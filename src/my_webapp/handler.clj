@@ -17,7 +17,7 @@
   (POST "/add-location"
     {params :params}
     (let [{:keys [x y]} params
-          parsed (map #(Integer/parseInt %) [x y])]
+          parsed (mapv edn/read-string [x y])]
       (if (every? number? parsed)
         (views/add-location-results-page params)
         (views/add-location-page "Location must be a number"))))
