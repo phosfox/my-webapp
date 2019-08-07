@@ -2,3 +2,11 @@
 org.h2.jdbc.JdbcSQLException: Datenumwandlungsfehler beim Umwandeln von "'a' (LOCATIONS: X INTEGER)"
 Data conversion error converting "'a' (LOCATIONS: X INTEGER)"; SQL statement:
 INSERT INTO locations ( x, y ) VALUES ( ?, ? ) -- (?1, ?2) [22018-193]
+2019-08-07 14:10:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Datenumwandlungsfehler beim Umwandeln von "'a' (LOCATIONS: X INTEGER)"
+Data conversion error converting "'a' (LOCATIONS: X INTEGER)"; SQL statement:
+INSERT INTO locations ( x, y ) VALUES ( ?, ? ) -- (?1, ?2) [22018-193]
+2019-08-07 14:24:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Datenumwandlungsfehler beim Umwandeln von "BLUB"
+Data conversion error converting "BLUB"; SQL statement:
+select x, y from locations where id = ? [22018-193]

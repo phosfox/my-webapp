@@ -28,8 +28,7 @@
    [:h1 "Home"]
    [:p "Webapp to store and display some 2D (x,y) locations."]))
 
-(defn add-location-page
-  []
+(def add-location-page-content
   (page/html5
    (gen-page-head "Add a Location")
    header-links
@@ -39,6 +38,29 @@
     [:p "x value: " [:input {:type "text" :name "x"}]]
     [:p "y value: " [:input {:type "text" :name "y"}]]
     [:p [:input {:type "submit" :value "submit location"}]]]))
+
+(defn add-location-page
+  ([]
+     (page/html5
+      (gen-page-head "Add a Location")
+      header-links
+      [:h1 "Add a Location"]
+      [:form {:action "/add-location" :method "POST"}
+       (util/anti-forgery-field) ; prevents cross-site scripting attacks
+       [:p "x value: " [:input {:type "text" :name "x"}]]
+       [:p "y value: " [:input {:type "text" :name "y"}]]
+       [:p [:input {:type "submit" :value "submit location"}]]]))
+  ([msg]
+     (page/html5
+      (gen-page-head "Add a Location")
+      header-links
+      [:h1 "Add a Location"]
+      [:h2 (str msg)]
+      [:form {:action "/add-location" :method "POST"}
+       (util/anti-forgery-field) ; prevents cross-site scripting attacks
+       [:p "x value: " [:input {:type "text" :name "x"}]]
+       [:p "y value: " [:input {:type "text" :name "y"}]]
+       [:p [:input {:type "submit" :value "submit location"}]]])))
 
 (defn add-location-results-page
   [{:keys [x y]}]

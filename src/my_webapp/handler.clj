@@ -2,6 +2,7 @@
   (:require [my-webapp.views :as views] ; add this require
             [ring.adapter.jetty :as jetty]
             [compojure.core :refer :all]
+            [clojure.edn :as edn]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]])
   (:gen-class))
@@ -15,7 +16,11 @@
     (views/add-location-page))
   (POST "/add-location"
     {params :params}
-    (views/add-location-results-page params))
+    (let [{:keys [x y]} params
+          parsed (map #(Integer/parseInt %) [x y])]
+      (if (every? number? parsed)
+        (views/add-location-results-page params)
+        (views/add-location-page "Location must be a number"))))
   (GET "/location/:loc-id"
     [loc-id]
     (views/location-page loc-id))
@@ -34,4 +39,4 @@
                            (System/getenv "PORT")
                            5000))]
     (jetty/run-jetty app {:port  port
-                            :join? false})))
+                          :join? false})))
