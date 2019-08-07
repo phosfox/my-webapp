@@ -16,8 +16,8 @@
     (views/add-location-page))
   (POST "/add-location"
     {params :params}
-    (let [{:keys [x y]} params
-          parsed (map util/parse-int [x y])]
+    (let [coords (vals (dissoc params :__anti-forgery-token))
+          parsed (map util/parse-int coords)]
       (if (every? number? parsed)
         (views/add-location-results-page params)
         (views/add-location-page "Location must be a number"))))
