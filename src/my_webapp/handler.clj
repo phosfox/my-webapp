@@ -2,7 +2,7 @@
   (:require [my-webapp.views :as views] ; add this require
             [ring.adapter.jetty :as jetty]
             [compojure.core :refer :all]
-            [clojure.edn :as edn]
+            [my-webapp.util :as util]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]])
   (:gen-class))
@@ -17,7 +17,7 @@
   (POST "/add-location"
     {params :params}
     (let [{:keys [x y]} params
-          parsed (mapv edn/read-string [x y])]
+          parsed (map util/parse-int [x y])]
       (if (every? number? parsed)
         (views/add-location-results-page params)
         (views/add-location-page "Location must be a number"))))

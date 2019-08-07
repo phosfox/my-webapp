@@ -55,7 +55,7 @@
       (gen-page-head "Add a Location")
       header-links
       [:h1 "Add a Location"]
-      [:h2 (str msg)]
+      [:h2 {:style "color:red"} (str msg) ]
       [:form {:action "/add-location" :method "POST"}
        (util/anti-forgery-field) ; prevents cross-site scripting attacks
        [:p "x value: " [:input {:type "text" :name "x"}]]
